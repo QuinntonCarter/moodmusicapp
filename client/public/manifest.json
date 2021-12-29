@@ -1,0 +1,12 @@
+{
+  "short_name": "mood.",
+  "name": "mood. spotify stats tracker and playlist sharing site",
+  "icons": [
+    {
+      "src": "",
+      "sizes": "",
+      "type": ""
+    }
+  ],
+  "start_url": "."
+}
