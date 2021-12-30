@@ -9,6 +9,8 @@ const mongoose = require("mongoose");
 
 const {
   PORT,
+  BASE_URL,
+  TOKEN_URL,
   JWT_SECRET,
   CLIENT_ID,
   CLIENT_SECRET,
@@ -90,7 +92,7 @@ app.get("/callback", (req, res, next) => {
 
     axios({
     method: "POST",
-    url: "https://accounts.spotify.com/api/token",
+    url: TOKEN_URL,
     params: {
       grant_type: grant,
       code: code,
@@ -109,9 +111,7 @@ app.get("/callback", (req, res, next) => {
         const tokenParams = new URLSearchParams(
             `access_token=${access_token}&refresh_token=${refresh_token}&expires_in=${expires_in}`
         );
-        // *** change to website url before deploy ***
-        res.redirect(`http://localhost:3000/?${tokenParams}`)
-        // res.redirect(`http://localhost:3000/`)
+        res.redirect(`${BASE_URL}${tokenParams}`)
         } else {
         res.redirect(`/?${URLSearchParams({ error: "Invalid token" })}`);
         }
@@ -128,9 +128,8 @@ app.get("/refresh_token", (req, res) => {
   );
 
   axios({
-    method: "post",
-    // if breaks, check that lack of ? isn't causing issues in URLs
-    url: "https://accounts.spotify.com/api/token",
+    method: "POST",
+    url: TOKEN_URL,
     data: queryParams,
     headers: {
       "content-type": "application/x-www-form-urlencoded",
