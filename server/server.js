@@ -58,7 +58,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", require("./routes/authRouter.js"));
-app.use("/app", jwt({
+app.use("/app", expressJwt({
     secret: JWT_SECRET,
     algorithms: ["sha1", "RS256", "HS256"],
   })
