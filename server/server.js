@@ -55,7 +55,7 @@ mongoose.connect(
 );
 
 app.get("/", (req, res) => {
-  res.send("hello world");
+  res.send("Hello world, I'm a server! ♪ ♬ (づ￣ ³￣)づ ♬ ♪");
 });
 
 app.use("/auth", require("./routes/authRouter.js"));
