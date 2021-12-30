@@ -14,7 +14,7 @@ const {
   CLIENT_SECRET,
   REDIRECT_URI,
   AUTHENDPOINT
-} = process.env;
+} = process.env
 
 app.use(morgan("dev"));
 app.use(express.json());
