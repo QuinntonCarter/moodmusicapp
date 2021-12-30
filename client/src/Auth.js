@@ -16,6 +16,30 @@ export default function Auth(){
     const [ inputs, setInputs ] = useState(initInputs);
     const [ toggle, setToggle ] = useState(false);
 
+    // const generateRandomString = (length) => {
+    //     let string = "";
+    //     const possible =
+    //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    //     for (let i = 0; i < length; i++) {
+    //       string += possible.charAt(Math.floor(Math.random() * possible.length));
+    //     }
+    //     return string;
+    // };
+
+    // const state = generateRandomString(16);
+    // const scopes = [
+    //     "user-read-playback-position",
+    //     "user-read-playback-state",
+    //     "user-read-currently-playing",
+    //     "user-read-recently-played",
+    //     "user-read-email",
+    //     "user-library-read",
+    //     "user-top-read",
+    //     "playlist-read-collaborative",
+    //     "playlist-read-private",
+    //     "user-follow-read",
+    // ];
+    // ${REACT_APP_SPOTIFY_LOGIN_URL}&state=${state}&scope=${scopes}
     const {
         token,
         signup,

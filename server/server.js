@@ -71,7 +71,7 @@ app.use("/app/users", require("./routes/userRouter.js"));
 app.use("/app/moods", require("./routes/moodRouter.js"));
 app.use("/app/lists", require("./routes/listsRouter.js"));
 
-app.get("/login", (req, res, next) => {
+app.get(`${BASE_URL}/login`, (req, res, next) => {
   const state = generateRandomString(16);
 
   res.cookie("spotify_auth_state", state, {
@@ -79,6 +79,7 @@ app.get("/login", (req, res, next) => {
     secure: true,
     httpOnly: true,
   });
+  // https://accounts.spotify.com/authorize&client_id=41305753399c4bb1b8bc94072ff3baed&redirect_uri=https://moodmusicapp.netlify.app/callback&state=
   const queryParams = new URLSearchParams(
     `client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&state=${state}&scope=${scopes}`
   );
@@ -86,7 +87,7 @@ app.get("/login", (req, res, next) => {
   res.redirect(`${AUTHENDPOINT}?${queryParams}`);
 });
 
-app.get("/callback", (req, res, next) => {
+app.get(`${BASE_URL}/callback`, (req, res, next) => {
   const code = req.query.code || null;
   const grant = "authorization_code";
 
@@ -121,7 +122,7 @@ app.get("/callback", (req, res, next) => {
     });
 });
 
-app.get("/refresh_token", (req, res) => {
+app.get(`${BASE_URL}/refresh_token`, (req, res) => {
   const { refresh_token } = req.query;
   const queryParams = new URLSearchParams(
     `grant_type=refresh_token&refresh_token=${refresh_token}`
