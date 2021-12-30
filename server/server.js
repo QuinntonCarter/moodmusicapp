@@ -35,16 +35,9 @@ const generateRandomString = (length) => {
 };
 
 const scopes = [
-  "user-read-playback-position",
-  "user-read-playback-state",
-  "user-read-currently-playing",
-  "user-read-recently-played",
-  "user-read-email",
-  "user-library-read",
   "user-top-read",
   "playlist-read-collaborative",
-  "playlist-read-private",
-  "user-follow-read",
+  "playlist-read-private"
 ];
 
 mongoose.connect(

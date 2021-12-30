@@ -4,6 +4,9 @@ moods one to one
 
 todo final
     + add delete of playlists from db to user > deleteAcc route
+    + route back to profile on submit of playlist and mood
+    + implement Loading component w timeout
+    + flesh out error handling to display errors in more places if necessary
     + add more stuff to searched profile page
 
 Notes to self:
