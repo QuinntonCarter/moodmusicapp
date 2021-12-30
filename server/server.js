@@ -13,7 +13,8 @@ const {
   CLIENT_ID,
   CLIENT_SECRET,
   REDIRECT_URI,
-  AUTHENDPOINT
+  AUTHENDPOINT,
+  MONGODB_URI
 } = process.env
 
 app.use(morgan("dev"));
@@ -43,7 +44,7 @@ const scopes = [
 ];
 
 mongoose.connect(
-  "mongodb://localhost:27017/cueAppDB",
+  MONGODB_URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
