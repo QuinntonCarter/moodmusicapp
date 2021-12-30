@@ -22,7 +22,7 @@ const {
 
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(cors({ origin: BASE, WEB_BASE_URL }));
+app.use(cors({ origin: BASE_URL, WEB_BASE_URL }));
 
 
 // const generateRandomString = (length) => {
