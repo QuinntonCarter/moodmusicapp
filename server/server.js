@@ -88,7 +88,6 @@ app.get(`/login`, (req, res, next) => {
   res.redirect(`${url}`);
 });
 
-// set this up as a redirect route variable, /callback/* {this(the url and params hardcoded)}
 app.get(`/callback`, (req, res, next) => {
   const code = req.query.code || null;
   const grant = "authorization_code";
@@ -133,7 +132,6 @@ app.get(`/refresh_token`, (req, res) => {
   axios({
     method: "POST",
     url: refreshTokenURL,
-    // data: queryParams,
     headers: {
       "content-type": "application/x-www-form-urlencoded",
       Authorization: `Basic ${new Buffer.from(
@@ -156,7 +154,6 @@ app.use((err, req, res, next) => {
   return res.send({ errMsg: err.message })
 });
 
-// ** create logout enpoint that removes cookies and sends user back to login page
 app.listen(PORT, 8888, () => {
   console.log(`Music app listening at ${PORT}`);
 });
