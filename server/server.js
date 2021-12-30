@@ -6,7 +6,6 @@ require("dotenv").config();
 const cors = require('cors');
 const expressJwt = require("express-jwt");
 const mongoose = require("mongoose");
-const { URLSearchParams } = require('url')
 
 const {
   PORT,
@@ -82,12 +81,13 @@ app.get(`/login`, (req, res, next) => {
     secure: true,
     httpOnly: true,
   });
-  // https://accounts.spotify.com/authorize&client_id=41305753399c4bb1b8bc94072ff3baed&redirect_uri=https://moodmusicapp.netlify.app/callback&state=
+
   const url = new URL(
     `${AUTHENDPOINT}?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&state=${state}&scope=${scopes}&show_dialog=true`
   );
   res.redirect(`${url}`);
 });
+
 // set this up as a redirect route variable, /callback/* {this(the url and params hardcoded)}
 app.get(`/callback`, (req, res, next) => {
   const code = req.query.code || null;
@@ -126,14 +126,14 @@ app.get(`/callback`, (req, res, next) => {
 
 app.get(`/refresh_token`, (req, res) => {
   const { refresh_token } = req.query;
-  const queryParams = new URL(
-    `grant_type=refresh_token&refresh_token=${refresh_token}`
+  const refreshTokenURL = new URL(
+    `${TOKEN_URL}/?grant_type=refresh_token&refresh_token=${refresh_token}`
   );
 
   axios({
     method: "POST",
-    url: TOKEN_URL,
-    data: queryParams,
+    url: refreshTokenURL,
+    // data: queryParams,
     headers: {
       "content-type": "application/x-www-form-urlencoded",
       Authorization: `Basic ${new Buffer.from(
