@@ -1,7 +1,7 @@
 {
-  "name": "server",
+  "name": "moodappserver",
   "version": "1.0.0",
-  "description": "",
+  "description": "Application for viewing your Spotify listening stats, sharing stats, and viewing friends' stats.",
   "main": "server.js",
   "engines": {
     "node": "14.x",
@@ -9,10 +9,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Quinnton Carter",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
