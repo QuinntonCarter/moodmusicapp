@@ -5,7 +5,7 @@ require("dotenv").config();
 const jwt = require('jsonwebtoken');
 
 const {
-    SECRET
+    JWT_SECRET
 } = process.env
 
 // Signup
@@ -26,7 +26,7 @@ authRouter.post("/signup", (req, res, next) => {
             return next(new Error('Something went wrong'))
         }
                                 // payload,            // secret
-        const token = jwt.sign(savedUser.withoutPassword(), SECRET)
+        const token = jwt.sign(savedUser.withoutPassword(), JWT_SECRET)
         return res.status(201).send({ token, user: savedUser.withoutPassword() })
         })
     })
@@ -52,7 +52,7 @@ authRouter.post("/login", (req, res, next) => {
             res.status(403)
             return next(new Error("Username or password are incorrect"))
         }
-        const token = jwt.sign(user.withoutPassword(), SECRET)
+        const token = jwt.sign(user.withoutPassword(), JWT_SECRET)
         return res.status(200).send({ token, user: user.withoutPassword() })
         })
     })

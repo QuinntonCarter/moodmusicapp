@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 
 const {
   PORT,
-  SECRET,
+  JWT_SECRET,
   CLIENT_ID,
   CLIENT_SECRET,
   REDIRECT_URI,
@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
 
 app.use("/auth", require("./routes/authRouter.js"));
 app.use("/app", expressJwt({
-    secret: SECRET,
+    secret: JWT_SECRET,
     algorithms: ["sha1", "RS256", "HS256"],
   })
 );
