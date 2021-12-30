@@ -66,15 +66,16 @@ const refreshToken = async () => {
 };
 
 const getAccessToken = () => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    console.log(urlParams)
+    // const queryString = window.location.search;
+    // const urlParams = new URLSearchParams(queryString);
+    let params = (new URL(document.location)).searchParams;
+    console.log(params)
     const queryParams = {
-        [LOCALSTORAGE_KEYS.accessToken]: urlParams.get('access_token'),
-        [LOCALSTORAGE_KEYS.refreshToken]: urlParams.get('refresh_token'),
-        [LOCALSTORAGE_KEYS.expireTime]: urlParams.get('expires_in'),
+        [LOCALSTORAGE_KEYS.accessToken]: params.get('access_token'),
+        [LOCALSTORAGE_KEYS.refreshToken]: params.get('refresh_token'),
+        [LOCALSTORAGE_KEYS.expireTime]: params.get('expires_in'),
     };
-    const hasError = urlParams.get('error');
+    const hasError = params.get('error');
 
     // If there's an error OR the token in localStorage has expired, refresh the token
     if (hasError || hasTokenExpired() || LOCALSTORAGE_VALUES.accessToken === 'undefined') {
