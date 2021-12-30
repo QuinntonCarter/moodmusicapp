@@ -4,7 +4,8 @@ import { accessToken } from '../spotify.js';
 import { UserContext } from './userProvider.js';
 
 const {
-    REACT_APP_API_URL
+    REACT_APP_API_URL,
+    REACT_APP_MOOD_SERVER_URL
 } = process.env
 
 export const AppContext = React.createContext();
@@ -28,11 +29,11 @@ export default function AppContextProvider(props){
     const [ playlists, setPlaylists ] = useState({ items:[], total: 0});
     const [ playlistTracks, setPlaylistTracks ] = useState([]);
     const [ selectedItem, setSelectedItem ] = useState({});
-
+    
     // search for user
     const search = (inputs) => {
         const parseInputs = inputs.split(' ').join('_')
-        userAxios.get(`/app/users`, {
+        userAxios.get(`${REACT_APP_MOOD_SERVER_URL}/app/users`, {
             params: {
                 inputs: parseInputs,
                 type: 'friend'
@@ -41,11 +42,10 @@ export default function AppContextProvider(props){
         .then(res => setFound(res.data))
         .catch(err => console.log(err))
     };
-    
     // retrieve item from db based on passed arguments
     const getSelection = (id, location) => {
         setFound()
-        userAxios.get(`/app/users`, {
+        userAxios.get(`${REACT_APP_MOOD_SERVER_URL}/app/users`, {
             params: {
                 id: id,
                 type: location

@@ -69,7 +69,7 @@ export default function Auth(){
             }}
             fetchData();
         }if(!accessToken){
-            accessToken()
+            return;
         }
     }, [setSpotifyUserState, token]);
     
