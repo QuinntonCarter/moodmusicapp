@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import AuthForm from './components/forms/authForm.js';
 import { UserContext } from './components/context/userProvider.js';
 import { accessToken, getCurrentUserProfile } from './components/spotify.js';
-import axios from 'axios';
 
 const {
     REACT_APP_SPOTIFY_AUTH,
@@ -18,7 +17,6 @@ export default function Auth(){
     
     const [ inputs, setInputs ] = useState(initInputs);
     const [ toggle, setToggle ] = useState(false);
-    
     const {
         token,
         signup,
@@ -28,7 +26,7 @@ export default function Auth(){
         spotifyUserState,
         setSpotifyUserState
     } = useContext(UserContext);
-
+    
     const scopes = [
         "user-read-playback-position",
         "user-read-playback-state",
@@ -55,11 +53,6 @@ export default function Auth(){
         `client_id=${REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${REACT_APP_REDIRECT_URI}&state=${state}&scope=${scopes}`
     );
 
-    function getToken(){
-        axios.get(`${REACT_APP_SPOTIFY_AUTH}?${queryParams}`)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    }
 
     function handleChange(e){
         const {name, value} = e.target
@@ -84,14 +77,6 @@ export default function Auth(){
         resetAuthError()
         setInputs(initInputs)
     };
-
-    useEffect(() => {
-        let query = window.location.search
-        let code = query && query.get('code')
-        if(code){
-            console.log(code)
-        }
-    })
 
     useEffect(()=> {
         if(accessToken){
@@ -150,6 +135,6 @@ export default function Auth(){
             By using this app, you are agreeing to allow it to access your <span style={{color: '#1DB954'}}> Spotify </span> listening history and stats. 
             If you choose to post, you are agreeing to store the associated <span style={{color: '#1DB954'}}> Spotify </span> listening metadata for viewing by 
             yourself and friends but no sensitive account information is used in the process. <br/> <span className='text-indigo-600'> This app will never access or store sensitive account information. </span> You may delete your account at any time.</p>
-            <button type='button' className='btnbold-small bg-indigo-600' onClick={getToken()}> Login with Spotify </button>
+            <a type='button' className='btnbold-small bg-indigo-600' href={`${REACT_APP_SPOTIFY_AUTH}?${queryParams}`}> Login with Spotify </a>
         </div>
 };
