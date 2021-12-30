@@ -90,7 +90,7 @@ app.use("/app/lists", require("./routes/listsRouter.js"));
 //   res.redirect(`${AUTHENDPOINT}?${queryParams}`);
 // });
 
-app.get(`/callback`, (req, res, next) => {
+app.get(`${BASE_URL}/callback`, (req, res, next) => {
   const code = req.query.code || null;
   const grant = "authorization_code";
 
