@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import AuthForm from './components/forms/authForm.js';
 import { UserContext } from './components/context/userProvider.js';
 import { accessToken, getCurrentUserProfile } from './components/spotify.js';
-import axios from 'axios';
 
 const {
     REACT_APP_SPOTIFY_AUTH,
@@ -19,45 +18,31 @@ export default function Auth(){
     const [ inputs, setInputs ] = useState(initInputs);
     const [ toggle, setToggle ] = useState(false);
     
-    function authUser(){
-        const scopes = [
-            "user-read-playback-position",
-            "user-read-playback-state",
-            "user-read-currently-playing",
-            "user-read-recently-played",
-            "user-read-email",
-            "user-library-read",
-            "user-top-read",
-            "playlist-read-collaborative",
-            "playlist-read-private",
-            "user-follow-read",
-        ];
-        const generateRandomString = (length) => {
-            let string = "";
-            const possible =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            for (let i = 0; i < length; i++) {
-              string += possible.charAt(Math.floor(Math.random() * possible.length));
-            }
-            return string;
-        };
-        const state = generateRandomString(16);
-        // const queryParams = new URLSearchParams(
-        //     `client_id=${REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${REACT_APP_REDIRECT_URI}&state=${state}&scope=${scopes}`
-        // );
-        axios.get(`${REACT_APP_SPOTIFY_AUTH}`, {
-            params: {
-                client_id: REACT_APP_CLIENT_ID,
-                response_type: 'code',
-                redirect_uri: REACT_APP_REDIRECT_URI,
-                state: state,
-                scope: scopes
-            }
-        })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-        // https://accounts.spotify.com/authorize&client_id=41305753399c4bb1b8bc94072ff3baed&redirect_uri=https://moodmusicapp.netlify.app/callback&state=
-    }
+    const scopes = [
+        "user-read-playback-position",
+        "user-read-playback-state",
+        "user-read-currently-playing",
+        "user-read-recently-played",
+        "user-read-email",
+        "user-library-read",
+        "user-top-read",
+        "playlist-read-collaborative",
+        "playlist-read-private",
+        "user-follow-read",
+    ];
+    const generateRandomString = (length) => {
+        let string = "";
+        const possible =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for (let i = 0; i < length; i++) {
+            string += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return string;
+    };
+    const state = generateRandomString(16);
+    const queryParams = new URLSearchParams(
+        `client_id=${REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${REACT_APP_REDIRECT_URI}&state=${state}&scope=${scopes}`
+    );
 
     const {
         token,
@@ -150,6 +135,6 @@ export default function Auth(){
             By using this app, you are agreeing to allow it to access your <span style={{color: '#1DB954'}}> Spotify </span> listening history and stats. 
             If you choose to post, you are agreeing to store the associated <span style={{color: '#1DB954'}}> Spotify </span> listening metadata for viewing by 
             yourself and friends but no sensitive account information is used in the process. <br/> <span className='text-indigo-600'> This app will never access or store sensitive account information. </span> You may delete your account at any time.</p>
-            <input type='button' className='btnbold-small bg-indigo-600' onClick={authUser()}> Login with Spotify </input>
+            <a type='button' className='btnbold-small bg-indigo-600' href={`${REACT_APP_SPOTIFY_AUTH}?${queryParams}`}> Login with Spotify </a>
         </div>
 };
