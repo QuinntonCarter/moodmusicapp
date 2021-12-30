@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import AuthForm from './components/forms/authForm.js';
 import { UserContext } from './components/context/userProvider.js';
 import { accessToken, getCurrentUserProfile } from './components/spotify.js';
+import axios from 'axios';
 
 const {
     REACT_APP_SPOTIFY_AUTH,
@@ -77,6 +78,29 @@ export default function Auth(){
         resetAuthError()
         setInputs(initInputs)
     };
+
+    useEffect(() => {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        if(urlParams){
+            console.log(urlParams.get('code'))
+        }
+        // axios({
+        //     method: "POST",
+        //     url: TOKEN_URL,
+        //     params: {
+        //         grant_type: grant,
+        //         code: code,
+        //         redirect_uri: REDIRECT_URI
+        //     },
+        //     headers: {
+        //         "content-type": "application/x-www-form-urlencoded",
+        //         Authorization: `Basic ${new Buffer.from(
+        //         `${CLIENT_ID}:${CLIENT_SECRET}`
+        //         ).toString("base64")}`,
+        //     },
+        //     })
+    })
 
     useEffect(()=> {
         if(accessToken){
