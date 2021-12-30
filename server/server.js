@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 const {
   PORT,
   BASE_URL,
+  WEB_BASE_URL,
   TOKEN_URL,
   JWT_SECRET,
   CLIENT_ID,
@@ -20,6 +21,8 @@ const {
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors({ origin: BASE, WEB_BASE_URL }));
+
 
 // const generateRandomString = (length) => {
 //   let string = "";
