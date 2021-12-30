@@ -39,7 +39,7 @@ export default function UserProvider(props){
 
 // for auth
     function signup(credentials){
-        axios.post(`/auth/signup`, credentials)
+        axios.post(`${REACT_APP_MOOD_SERVER_URL}/auth/signup`, credentials)
         .then(res => {
             const { user, token } = res.data
             localStorage.setItem('token', token)
@@ -58,7 +58,7 @@ export default function UserProvider(props){
             username: credentials.username.split(' ').join('_'),
             password: credentials.password
         }
-        axios.post(`/auth/login`, parsedInputs)
+        axios.post(`${REACT_APP_MOOD_SERVER_URL}/auth/login`, parsedInputs)
         .then(res => {
             const { user, token } = res.data
             localStorage.setItem('token', token)

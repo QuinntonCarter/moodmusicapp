@@ -106,7 +106,7 @@ export default function Auth(){
             <p className='text-xs p-3'> <span className='text-indigo-500'> mood. </span> is an app built for viewing <span style={{color: '#1DB954'}}> Spotify </span> listening history and stats for yourself and friends. 
             By using this app, you are agreeing to allow it to access your <span style={{color: '#1DB954'}}> Spotify </span> listening history and stats. 
             If you choose to post, you are agreeing to store the associated <span style={{color: '#1DB954'}}> Spotify </span> listening metadata for viewing by 
-            yourself and friends but no sensitive account information is used in the process. <br/> <span className='text-cerise-600'> This app will never access or store sensitive account information. </span> You may delete your account at any time.</p>
+            yourself and friends but no sensitive account information is used in the process. <br/> <span className='text-cerise-600'> This app will never access or store sensitive account information. </span> <br/> You may delete your account at any time.</p>
             <a type='button' className='btnbold-small bg-indigo-600' href={REACT_APP_SPOTIFY_AUTH}> Login with Spotify </a>
         </div>
 };
