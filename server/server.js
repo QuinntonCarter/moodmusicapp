@@ -72,7 +72,7 @@ app.use("/app/users", require("./routes/userRouter.js"));
 app.use("/app/moods", require("./routes/moodRouter.js"));
 app.use("/app/lists", require("./routes/listsRouter.js"));
 
-app.get(`${BASE_URL}/login`, (req, res, next) => {
+app.get(`/login`, (req, res, next) => {
   const state = generateRandomString(16);
 
   res.cookie("spotify_auth_state", state, {
@@ -88,7 +88,7 @@ app.get(`${BASE_URL}/login`, (req, res, next) => {
   res.redirect(`${AUTHENDPOINT}?${queryParams}`);
 });
 
-app.get(`${BASE_URL}/callback`, (req, res, next) => {
+app.get(`/callback`, (req, res, next) => {
   const code = req.query.code || null;
   const grant = "authorization_code";
 
@@ -123,7 +123,7 @@ app.get(`${BASE_URL}/callback`, (req, res, next) => {
     });
 });
 
-app.get(`${BASE_URL}/refresh_token`, (req, res) => {
+app.get(`/refresh_token`, (req, res) => {
   const { refresh_token } = req.query;
   const queryParams = new URLSearchParams(
     `grant_type=refresh_token&refresh_token=${refresh_token}`
