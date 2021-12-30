@@ -27,7 +27,7 @@ export default function Auth(){
     } = useContext(UserContext);
 
     function handleChange(e){
-        const {name, value} = e.target
+        const { name, value } = e.target
         setInputs(prevInputs => ({
             ...prevInputs,
             [name]: value
@@ -69,7 +69,7 @@ export default function Auth(){
             }}
             fetchData();
         }if(!accessToken){
-            localStorage.clear()
+            accessToken()
         }
     }, [setSpotifyUserState, token]);
     

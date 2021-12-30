@@ -23,7 +23,6 @@ export const LOCALSTORAGE_VALUES = {
 
 
 // Clear out all localStorage items we've set and reload the page
-
 export const spotifyLogout = () => {
   localStorage.clear()
 };
@@ -31,7 +30,6 @@ export const spotifyLogout = () => {
 
 // Checks if the amount of time that has elapsed between the timestamp in localStorage
 // and now is greater than the expiration time of 3600 seconds (1 hour).
-
 const hasTokenExpired = () => {
     const { accessToken, timestamp, expireTime } = LOCALSTORAGE_VALUES;
     if (!accessToken || !timestamp) {
@@ -101,7 +99,6 @@ const getAccessToken = () => {
       // Return access token from query params
         return queryParams[LOCALSTORAGE_KEYS.accessToken];
     }
-
     return false;
 }
 
