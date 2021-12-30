@@ -11,7 +11,7 @@ const {
   PORT,
   BASE_URL,
   TOKEN_URL,
-  SPOTIFY_LOGIN_URL,
+  SERVER_URL,
   JWT_SECRET,
   CLIENT_ID,
   CLIENT_SECRET,
@@ -72,21 +72,21 @@ app.use("/app/users", require("./routes/userRouter.js"));
 app.use("/app/moods", require("./routes/moodRouter.js"));
 app.use("/app/lists", require("./routes/listsRouter.js"));
 
-app.get(`${SPOTIFY_LOGIN_URL}/login`, (req, res, next) => {
-  const state = generateRandomString(16);
+// app.get(`/login`, (req, res, next) => {
+//   const state = generateRandomString(16);
 
-  res.cookie("spotify_auth_state", state, {
-    expires: new Date(Date.now() + 3600),
-    secure: true,
-    httpOnly: true,
-  });
-  // https://accounts.spotify.com/authorize&client_id=41305753399c4bb1b8bc94072ff3baed&redirect_uri=https://moodmusicapp.netlify.app/callback&state=
-  const queryParams = new URLSearchParams(
-    `client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&state=${state}&scope=${scopes}`
-  );
+//   res.cookie("spotify_auth_state", state, {
+//     expires: new Date(Date.now() + 3600),
+//     secure: true,
+//     httpOnly: true,
+//   });
+//   // https://accounts.spotify.com/authorize&client_id=41305753399c4bb1b8bc94072ff3baed&redirect_uri=https://moodmusicapp.netlify.app/callback&state=
+//   const queryParams = new URLSearchParams(
+//     `client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&state=${state}&scope=${scopes}`
+//   );
 
-  res.redirect(`${AUTHENDPOINT}?${queryParams}`);
-});
+//   res.redirect(`${AUTHENDPOINT}?${queryParams}`);
+// });
 
 app.get(`/callback`, (req, res, next) => {
   const code = req.query.code || null;
@@ -155,6 +155,7 @@ app.use((err, req, res, next) => {
   return res.send({ errMsg: err.message })
 });
 
-app.listen(PORT, () => {
+// ** create logout enpoint that removes cookies and sends user back to login page
+app.listen(PORT, 8888, () => {
   console.log(`Music app listening at ${PORT}`);
 });
