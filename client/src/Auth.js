@@ -14,9 +14,19 @@ export default function Auth(){
         username: '',
         password: ''
     };
-
+    
     const [ inputs, setInputs ] = useState(initInputs);
     const [ toggle, setToggle ] = useState(false);
+    
+    const {
+        token,
+        signup,
+        login,
+        errMsg,
+        resetAuthError,
+        spotifyUserState,
+        setSpotifyUserState
+    } = useContext(UserContext);
     
     const scopes = [
         "user-read-playback-position",
@@ -44,15 +54,6 @@ export default function Auth(){
         `client_id=${REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${REACT_APP_REDIRECT_URI}&state=${state}&scope=${scopes}`
     );
 
-    const {
-        token,
-        signup,
-        login,
-        errMsg,
-        resetAuthError,
-        spotifyUserState,
-        setSpotifyUserState
-    } = useContext(UserContext);
 
     function handleChange(e){
         const {name, value} = e.target

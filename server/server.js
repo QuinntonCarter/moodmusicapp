@@ -21,28 +21,28 @@ const {
 app.use(morgan("dev"));
 app.use(express.json());
 
-const generateRandomString = (length) => {
-  let string = "";
-  const possible =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (let i = 0; i < length; i++) {
-    string += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return string;
-};
+// const generateRandomString = (length) => {
+//   let string = "";
+//   const possible =
+//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//   for (let i = 0; i < length; i++) {
+//     string += possible.charAt(Math.floor(Math.random() * possible.length));
+//   }
+//   return string;
+// };
 
-const scopes = [
-  "user-read-playback-position",
-  "user-read-playback-state",
-  "user-read-currently-playing",
-  "user-read-recently-played",
-  "user-read-email",
-  "user-library-read",
-  "user-top-read",
-  "playlist-read-collaborative",
-  "playlist-read-private",
-  "user-follow-read",
-];
+// const scopes = [
+//   "user-read-playback-position",
+//   "user-read-playback-state",
+//   "user-read-currently-playing",
+//   "user-read-recently-played",
+//   "user-read-email",
+//   "user-library-read",
+//   "user-top-read",
+//   "playlist-read-collaborative",
+//   "playlist-read-private",
+//   "user-follow-read",
+// ];
 
 mongoose.connect(
   MONGODB_URI,
