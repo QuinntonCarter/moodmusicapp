@@ -51,7 +51,8 @@ export default function Auth(){
     };
     const state = generateRandomString(16);
     const queryParams = new URLSearchParams(
-        `client_id=${REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${REACT_APP_REDIRECT_URI}&state=${state}&scope=${scopes}`
+        // try hardcoding this to .env variable
+        `?client_id=${REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=https://localhost:8888/callback&state=${state}&scope=${scopes}`
     );
 
     function handleChange(e){
@@ -135,6 +136,6 @@ export default function Auth(){
             By using this app, you are agreeing to allow it to access your <span style={{color: '#1DB954'}}> Spotify </span> listening history and stats. 
             If you choose to post, you are agreeing to store the associated <span style={{color: '#1DB954'}}> Spotify </span> listening metadata for viewing by 
             yourself and friends but no sensitive account information is used in the process. <br/> <span className='text-indigo-600'> This app will never access or store sensitive account information. </span> You may delete your account at any time.</p>
-            <a type='button' className='btnbold-small bg-indigo-600' href={`${REACT_APP_SPOTIFY_AUTH}`}> Login with Spotify </a>
+            <a type='button' className='btnbold-small bg-indigo-600' href={`${REACT_APP_SPOTIFY_AUTH}${queryParams}`}> Login with Spotify </a>
         </div>
 };

@@ -72,23 +72,23 @@ app.use("/app/users", require("./routes/userRouter.js"));
 app.use("/app/moods", require("./routes/moodRouter.js"));
 app.use("/app/lists", require("./routes/listsRouter.js"));
 
-// app.get(`/login`, (req, res, next) => {
-//   const state = generateRandomString(16);
+app.get(`/login`, (req, res, next) => {
+  const state = generateRandomString(16);
 
-//   res.cookie("spotify_auth_state", state, {
-//     expires: new Date(Date.now() + 3600),
-//     secure: true,
-//     httpOnly: true,
-//   });
-//   // https://accounts.spotify.com/authorize&client_id=41305753399c4bb1b8bc94072ff3baed&redirect_uri=https://moodmusicapp.netlify.app/callback&state=
-//   const queryParams = new URLSearchParams(
-//     `client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&state=${state}&scope=${scopes}`
-//   );
+  res.cookie("spotify_auth_state", state, {
+    expires: new Date(Date.now() + 3600),
+    secure: true,
+    httpOnly: true,
+  });
+  // https://accounts.spotify.com/authorize&client_id=41305753399c4bb1b8bc94072ff3baed&redirect_uri=https://moodmusicapp.netlify.app/callback&state=
+  const queryParams = new URLSearchParams(
+    `client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&state=${state}&scope=${scopes}`
+  );
 
-//   res.redirect(`${AUTHENDPOINT}?${queryParams}`);
-// });
-
-app.get(`${BASE_URL}/callback`, (req, res, next) => {
+  res.redirect(`${AUTHENDPOINT}?${queryParams}`);
+});
+// set this up as a redirect route variable, /callback/* {this(the url and params hardcoded)}
+app.get(`/callback`, (req, res, next) => {
   const code = req.query.code || null;
   const grant = "authorization_code";
 
