@@ -111,12 +111,12 @@ app.get(`/callback`, (req, res, next) => {
     .then((response) => {
         if (response.status === 200) {
         const { access_token, refresh_token, expires_in } = response.data;
-        const tokenParams = new URLSearchParams(
-            `?access_token=${access_token}&refresh_token=${refresh_token}&expires_in=${expires_in}`
+        const getTokenURL = new URL(
+            `${BASE_URL}?access_token=${access_token}&refresh_token=${refresh_token}&expires_in=${expires_in}`
         );
-        res.redirect(`${BASE_URL}${tokenParams}`)
+        res.redirect(`${getTokenURL}`)
         } else {
-        res.redirect(`/?${URLSearchParams({ error: "Invalid token" })}`);
+        res.redirect(`/?${URL({ error: "Invalid token" })}`);
         }
     })
     .catch((error) => {
@@ -126,7 +126,7 @@ app.get(`/callback`, (req, res, next) => {
 
 app.get(`/refresh_token`, (req, res) => {
   const { refresh_token } = req.query;
-  const queryParams = new URLSearchParams(
+  const queryParams = new URL(
     `grant_type=refresh_token&refresh_token=${refresh_token}`
   );
 
