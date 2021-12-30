@@ -95,9 +95,7 @@ export default function Auth(){
                 },
                 headers: {
                     "content-type": "application/x-www-form-urlencoded",
-                    Authorization: `Basic ${new Buffer.from(
-                        `${REACT_APP_CLIENT_ID}:${REACT_APP_CLIENT_SECRET}`
-                        ).toString("base64")}`,
+                    Authorization: `Basic ${REACT_APP_CLIENT_ID}:${REACT_APP_CLIENT_SECRET}`,
                     },
                 })
                 .then(res => {
