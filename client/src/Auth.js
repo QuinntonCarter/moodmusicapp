@@ -87,9 +87,7 @@ export default function Auth(){
         if(urlParams){
             const grant = "authorization_code";
             const code = urlParams.get('code')
-            axios({
-                method: "POST",
-                url: REACT_APP_TOKEN_URL,
+            axios.post(REACT_APP_TOKEN_URL, {
                 params: {
                     grant_type: grant,
                     code: code,
@@ -102,7 +100,9 @@ export default function Auth(){
                         ).toString("base64")}`,
                     },
                 })
-                .then(res => console.log(res))
+                .then(res => {
+                    // const { access_token, refresh_token, expires_in } = res.data;
+                    console.log(res)})
                 .catch(err => console.log(err))
             }
     })
