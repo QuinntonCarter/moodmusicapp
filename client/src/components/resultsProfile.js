@@ -22,6 +22,7 @@ export const ResultsProfile = () => {
         return () => {
             setFound('')
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const mappedTracks = playlistTracks.items && playlistTracks.items.map(item =>

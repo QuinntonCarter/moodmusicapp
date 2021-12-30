@@ -30,6 +30,7 @@ export default function AppContextProvider(props){
     const [ playlistTracks, setPlaylistTracks ] = useState([]);
     const [ selectedItem, setSelectedItem ] = useState({});
 
+    // search for user
     const search = (inputs) => {
         const parseInputs = inputs.split(' ').join('_')
         userAxios.get(`${REACT_APP_MOOD_SERVER_URL}/app/users`, {
@@ -41,7 +42,8 @@ export default function AppContextProvider(props){
         .then(res => setFound(res.data))
         .catch(err => console.log(err))
     };
-
+    
+    // retrieve item from db based on passed arguments
     const getSelection = (id, location) => {
         setFound()
         userAxios.get(`${REACT_APP_MOOD_SERVER_URL}/app/users`, {
@@ -54,6 +56,7 @@ export default function AppContextProvider(props){
         .catch(err => console.log(err))
     };
 
+    // get user's top listens based on passed arguments
     const getCurrentUserTop = async (type, limit, time_range) => {
             const { data } = await spotifyUserAPI.get(`/me/top/${type}`, {
             params: {
@@ -75,7 +78,6 @@ export default function AppContextProvider(props){
         return collected
     };
 
-    // for finding overall playlist analysis data; id = playlistId **
     const getPlaylistTracks = async (id) => {
         const { data } = await spotifyUserAPI.get(`/playlists/${id}/tracks`)
         setPlaylistTracks(data)
@@ -88,6 +90,7 @@ export default function AppContextProvider(props){
         getCurrentUserTop('tracks', 5, 'short_term')
         .then(res => setMonthlyTracks(res))
         .catch(err => console.log(err))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return(

@@ -29,6 +29,7 @@ export const CheckMood = () => {
     const [ amount, setAmount ] = useState(3);
     const [ timeframe, setTimeframe ] = useState('short_term');
     const [ mood, setMood ] = useState([]);
+
     useEffect(() => {
         // gets top on load
         getCurrentUserTop(type, amount, timeframe)
@@ -39,7 +40,6 @@ export const CheckMood = () => {
             const forDB = items.map(item => {
                 let selectionParsed
                 if(item.type === 'artist'){
-                    // no test label here..?
                 return {
                     selectionName: item.name,
                     genres: item.genres ? item.genres.map(genre => genre) : null,
@@ -48,7 +48,6 @@ export const CheckMood = () => {
                     type: item.type
                 }
                 } else if(item.type === 'track'){
-                    // no test label here..?
                     return {
                         selectionName: item.album.name,
                         artists: item.artists.map(artist => artist.name),
@@ -59,7 +58,7 @@ export const CheckMood = () => {
                 }
                 return selectionParsed
             })
-        // setFound to the items w only needed data
+        // setFound to the items w only needed data for mongodb api
             setFound(forDB)
         })
         .catch(err => console.log(err))
@@ -75,6 +74,7 @@ export const CheckMood = () => {
         return () => {
             setMood('')
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type, amount, timeframe]);
 
     const mappedMood = mood && mood.map(item => <MoodItem color={'indigo'} item={item} key={item.id} setFound={setFound}/>);

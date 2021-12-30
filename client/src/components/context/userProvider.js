@@ -20,6 +20,7 @@ export default function UserProvider(props){
         token: localStorage.getItem('token') || '',
         lists: [],
         recentMood: [],
+        // use to fix friend list info display on follow/unfollow
         friends: [],
         friendLists: [],
         friendPosts: [],
@@ -128,7 +129,6 @@ export default function UserProvider(props){
         )
         .catch(err => console.log(err))
     };
-
 
 // get all friends' mood in DB **
     const getStatus = async (type, searched) => {

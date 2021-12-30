@@ -21,6 +21,7 @@ export const UserProfile = () => {
     console.log(selectedItem)
     useEffect(() => {
         getStatus('searched', selectedItem._id)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return(
