@@ -2,14 +2,11 @@ import React, { useState, useContext, useEffect } from 'react';
 import AuthForm from './components/forms/authForm.js';
 import { UserContext } from './components/context/userProvider.js';
 import { accessToken, getCurrentUserProfile } from './components/spotify.js';
-import axios from 'axios';
 
 const {
     REACT_APP_SPOTIFY_AUTH,
     REACT_APP_CLIENT_ID,
-    REACT_APP_REDIRECT_URI,
-    REACT_APP_TOKEN_URL,
-    REACT_APP_CLIENT_SECRET
+    REACT_APP_REDIRECT_URI
 } = process.env
 
 export default function Auth(){
@@ -17,9 +14,10 @@ export default function Auth(){
         username: '',
         password: ''
     };
-    
+
     const [ inputs, setInputs ] = useState(initInputs);
     const [ toggle, setToggle ] = useState(false);
+    
     const {
         token,
         signup,
@@ -29,7 +27,7 @@ export default function Auth(){
         spotifyUserState,
         setSpotifyUserState
     } = useContext(UserContext);
-    
+
     const scopes = [
         "user-read-playback-position",
         "user-read-playback-state",
@@ -56,7 +54,6 @@ export default function Auth(){
         `client_id=${REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${REACT_APP_REDIRECT_URI}&state=${state}&scope=${scopes}`
     );
 
-
     function handleChange(e){
         const {name, value} = e.target
         setInputs(prevInputs => ({
@@ -80,30 +77,6 @@ export default function Auth(){
         resetAuthError()
         setInputs(initInputs)
     };
-
-    useEffect(() => {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        if(urlParams){
-            const grant = "authorization_code";
-            const code = urlParams.get('code')
-            axios.post(REACT_APP_TOKEN_URL, {
-                params: {
-                    grant_type: grant,
-                    code: code,
-                    redirect_uri: REACT_APP_REDIRECT_URI
-                },
-                headers: {
-                    "content-type": "application/x-www-form-urlencoded",
-                    Authorization: `Basic ${REACT_APP_CLIENT_ID}:${REACT_APP_CLIENT_SECRET}`,
-                    },
-                })
-                .then(res => {
-                    // const { access_token, refresh_token, expires_in } = res.data;
-                    console.log(res)})
-                .catch(err => console.log(err))
-            }
-    })
 
     useEffect(()=> {
         if(accessToken){
