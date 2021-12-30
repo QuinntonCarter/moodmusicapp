@@ -68,6 +68,7 @@ const refreshToken = async () => {
 const getAccessToken = () => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
+    console.log(urlParams)
     const queryParams = {
         [LOCALSTORAGE_KEYS.accessToken]: urlParams.get('access_token'),
         [LOCALSTORAGE_KEYS.refreshToken]: urlParams.get('refresh_token'),

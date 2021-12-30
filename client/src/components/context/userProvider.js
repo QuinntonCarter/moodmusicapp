@@ -11,6 +11,7 @@ const userAxios = axios.create();
 userAxios.interceptors.request.use(config => {
     const token = localStorage.getItem('token')
     config.headers.Authorization = `Bearer ${token}`
+    config.baseURL = REACT_APP_MOOD_SERVER_URL
     return config
 });
 
@@ -20,7 +21,7 @@ export default function UserProvider(props){
         token: localStorage.getItem('token') || '',
         lists: [],
         recentMood: [],
-        // use to fix friend list info display on follow/unfollow
+        // use to fix friend list info display on follow/unfollow **
         friends: [],
         friendLists: [],
         friendPosts: [],
@@ -38,7 +39,7 @@ export default function UserProvider(props){
 
 // for auth
     function signup(credentials){
-        axios.post(`${REACT_APP_MOOD_SERVER_URL}/auth/signup`, credentials)
+        axios.post(`/auth/signup`, credentials)
         .then(res => {
             const { user, token } = res.data
             localStorage.setItem('token', token)
@@ -57,7 +58,7 @@ export default function UserProvider(props){
             username: credentials.username.split(' ').join('_'),
             password: credentials.password
         }
-        axios.post(`${REACT_APP_MOOD_SERVER_URL}/auth/login`, parsedInputs)
+        axios.post(`/auth/login`, parsedInputs)
         .then(res => {
             const { user, token } = res.data
             localStorage.setItem('token', token)
@@ -98,7 +99,7 @@ export default function UserProvider(props){
 // share posts depending on type
     const shareItem = async (list, timeframe) => {
         if(list.type === 'playlist'){
-            userAxios.post(`${REACT_APP_MOOD_SERVER_URL}/app/lists`, list, {
+            userAxios.post(`/app/lists`, list, {
                 params: {
                     time: timeframe
                 }
@@ -106,7 +107,7 @@ export default function UserProvider(props){
             .then((res) => setUserState(prevState => ({...prevState, lists: [res.data]})))
             .catch(err => console.log(err))
         } else {
-            userAxios.post(`${REACT_APP_MOOD_SERVER_URL}/app/moods/${timeframe}`, list)
+            userAxios.post(`/app/moods/${timeframe}`, list)
             .then((res) => setUserState(prevState => ({...prevState, recentMood: [res.data]})))
             .catch(err => console.log(err))
         }
@@ -114,7 +115,7 @@ export default function UserProvider(props){
 
     // follow and unfollow
     const updateFollowStatus = (id, type) => {
-        userAxios.post(`${REACT_APP_MOOD_SERVER_URL}/app/users/friends`, {
+        userAxios.post(`/app/users/friends`, {
             params: {
                 type: type,
                 id: id
@@ -133,21 +134,21 @@ export default function UserProvider(props){
 // get all friends' mood in DB **
     const getStatus = async (type, searched) => {
         if(type === 'user'){
-        const { data } = await userAxios.get(`${REACT_APP_MOOD_SERVER_URL}/app/moods`, {
+        const { data } = await userAxios.get(`/app/moods`, {
             params: {
                 type: type
             }
         })
         return data
         } else if(type === 'friends'){
-        const { data } = await userAxios.get(`${REACT_APP_MOOD_SERVER_URL}/app/moods`, {
+        const { data } = await userAxios.get(`/app/moods`, {
             params: {
                 type: type
             }
         })
         return data
         } else if(type === 'searched'){
-            const { data } = await userAxios.get(`${REACT_APP_MOOD_SERVER_URL}/app/moods`, {
+            const { data } = await userAxios.get(`/app/moods`, {
                 params: {
                     type: type,
                     searched: searched
@@ -159,14 +160,14 @@ export default function UserProvider(props){
 // get recent playlist
     const getPosts = async (type) => {
         if(type === 'user'){
-        const { data } = await userAxios.get(`${REACT_APP_MOOD_SERVER_URL}/app/lists`, {
+        const { data } = await userAxios.get(`/app/lists`, {
             params: {
                 type: type,
             }
         })
         return data
     } else if(type === 'friends'){
-        const { data } = await userAxios.get(`${REACT_APP_MOOD_SERVER_URL}/app/lists`, {
+        const { data } = await userAxios.get(`/app/lists`, {
             params: {
                 type: type
             }
@@ -176,7 +177,7 @@ export default function UserProvider(props){
 
     // delete account and logout
     const deleteUserAccount = () => {
-        userAxios.delete(`${REACT_APP_MOOD_SERVER_URL}/app/users/removeAcc`)
+        userAxios.delete(`/app/users/removeAcc`)
         .then(res => console.log(res.data))
         .catch(err => handleAuthError(err.response.data.errMsg))
         setTimeout(() => { logout() }, 1000)
