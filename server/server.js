@@ -83,9 +83,8 @@ app.get(`/login`, (req, res, next) => {
   });
   // https://accounts.spotify.com/authorize&client_id=41305753399c4bb1b8bc94072ff3baed&redirect_uri=https://moodmusicapp.netlify.app/callback&state=
   const queryParams = new URLSearchParams(
-    `client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&state=${state}&scope=${scopes}`
+    `client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&state=${state}&scope=${scopes}&show_dialog=true`
   );
-
   res.redirect(`${AUTHENDPOINT}?${queryParams}`);
 });
 // set this up as a redirect route variable, /callback/* {this(the url and params hardcoded)}
