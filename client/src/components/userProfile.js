@@ -18,7 +18,6 @@ export const UserProfile = () => {
     const history = useHistory();
     const followStatus = user.friends && user.friends.includes(selectedItem._id) ? 'unfollow' : 'follow';
     
-    console.log(selectedItem)
     useEffect(() => {
         getStatus('searched', selectedItem._id)
         // eslint-disable-next-line react-hooks/exhaustive-deps

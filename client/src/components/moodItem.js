@@ -15,7 +15,6 @@ export const MoodItem = props => {
 
     let selectionParsed
     
-    // lost on every render warning, but it's intentional
     useEffect(() => {
         if(item.type === 'playlist'){
             // eslint-disable-next-line react-hooks/exhaustive-deps

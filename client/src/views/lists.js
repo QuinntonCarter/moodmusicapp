@@ -17,7 +17,8 @@ export default function Lists(){
         },
         userState
     } = useContext(UserContext);
-
+    
+    console.log(friendPosts)
     const mappedFriendsMoods = friendPosts ? friendPosts.map(post => 
         <>
             <h3 className='text-sm text-indigo-500'> {post.userString}'s mood

@@ -100,7 +100,7 @@ export default function UserProvider(props){
         }))
     };
 
-// share posts depending on type
+// POST share posts depending on type
     const shareItem = async (list, timeframe) => {
         if(list.type === 'playlist'){
             userAxios.post(`/app/lists`, list, {
@@ -117,7 +117,7 @@ export default function UserProvider(props){
         }
     };
 
-    // follow and unfollow
+    // PUT follow and unfollow
     const updateFollowStatus = (id, type) => {
         userAxios.post(`/app/users/friends`, {
             params: {
@@ -134,8 +134,9 @@ export default function UserProvider(props){
         )
         .catch(err => console.log(err))
     };
+    console.log(userState.friends)
 
-// get all friends' mood in DB **
+// GET mood from DB **
     const getStatus = async (type, searched) => {
         if(type === 'user'){
         const { data } = await userAxios.get(`/app/moods`, {
@@ -161,7 +162,7 @@ export default function UserProvider(props){
             return data
         }};
 
-// get recent playlist
+// GET recent playlist
     const getPosts = async (type) => {
         if(type === 'user'){
         const { data } = await userAxios.get(`/app/lists`, {
@@ -179,7 +180,7 @@ export default function UserProvider(props){
         return data
     }};
 
-    // delete account and logout
+    // DELETE account and logout
     const deleteUserAccount = () => {
         userAxios.delete(`/app/users/removeAcc`)
         .then(res => console.log(res.data))
