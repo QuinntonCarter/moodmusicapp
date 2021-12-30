@@ -72,7 +72,7 @@ app.use("/app/users", require("./routes/userRouter.js"));
 app.use("/app/moods", require("./routes/moodRouter.js"));
 app.use("/app/lists", require("./routes/listsRouter.js"));
 
-app.get(`/login`, (req, res, next) => {
+app.get(`${SPOTIFY_LOGIN_URL}/login`, (req, res, next) => {
   const state = generateRandomString(16);
 
   res.cookie("spotify_auth_state", state, {
