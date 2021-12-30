@@ -87,7 +87,7 @@ export default function Auth(){
 
     useEffect(() => {
         let query = window.location.search
-        let code = query.get('code')
+        let code = query && query.get('code')
         if(code){
             console.log(code)
         }
