@@ -7,7 +7,9 @@ import axios from 'axios';
 const {
     REACT_APP_SPOTIFY_AUTH,
     REACT_APP_CLIENT_ID,
-    REACT_APP_REDIRECT_URI
+    REACT_APP_REDIRECT_URI,
+    REACT_APP_TOKEN_URL,
+    REACT_APP_CLIENT_SECRET
 } = process.env
 
 export default function Auth(){
@@ -83,23 +85,26 @@ export default function Auth(){
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         if(urlParams){
-            console.log(urlParams.get('code'))
-        }
-        // axios({
-        //     method: "POST",
-        //     url: TOKEN_URL,
-        //     params: {
-        //         grant_type: grant,
-        //         code: code,
-        //         redirect_uri: REDIRECT_URI
-        //     },
-        //     headers: {
-        //         "content-type": "application/x-www-form-urlencoded",
-        //         Authorization: `Basic ${new Buffer.from(
-        //         `${CLIENT_ID}:${CLIENT_SECRET}`
-        //         ).toString("base64")}`,
-        //     },
-        //     })
+            const grant = "authorization_code";
+            const code = urlParams.get('code')
+            axios({
+                method: "POST",
+                url: REACT_APP_TOKEN_URL,
+                params: {
+                    grant_type: grant,
+                    code: code,
+                    redirect_uri: REACT_APP_REDIRECT_URI
+                },
+                headers: {
+                    "content-type": "application/x-www-form-urlencoded",
+                    Authorization: `Basic ${new Buffer.from(
+                        `${REACT_APP_CLIENT_ID}:${REACT_APP_CLIENT_SECRET}`
+                        ).toString("base64")}`,
+                    },
+                })
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
+            }
     })
 
     useEffect(()=> {

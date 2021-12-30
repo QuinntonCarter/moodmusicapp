@@ -5,7 +5,6 @@ const axios = require("axios");
 require("dotenv").config();
 const cors = require('cors');
 const expressJwt = require("express-jwt");
-const { URLSearchParams } = require("url");
 const mongoose = require("mongoose");
 
 const {
