@@ -155,7 +155,6 @@ app.use((err, req, res, next) => {
   return res.send({ errMsg: err.message })
 });
 
-// ** create logout enpoint that removes cookies and sends user back to login page
 app.listen(PORT, () => {
   console.log(`Music app listening at ${PORT}`);
 });
