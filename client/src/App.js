@@ -20,7 +20,7 @@ import { Search } from './views/search.js';
 function App() {
   const { token } = useContext(UserContext)
   const { found } = useContext(AppContext)
-  console.log(accessToken)
+
   return (
     <div className='h-screen overflow-scroll text-emerald-50' style={{backgroundColor: 'black'}}>
     <Banner/>
