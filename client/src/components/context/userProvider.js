@@ -7,7 +7,7 @@ const {
 
 export const UserContext = React.createContext();
 
-export const userAxios = axios.create();
+const userAxios = axios.create();
 userAxios.interceptors.request.use(config => {
     const token = localStorage.getItem('token')
     config.headers.Authorization = `Bearer ${token}`
