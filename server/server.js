@@ -6,6 +6,7 @@ require("dotenv").config();
 const cors = require('cors');
 const expressJwt = require("express-jwt");
 const mongoose = require("mongoose");
+const { URLSearchParams } = require('url')
 
 const {
   PORT,
