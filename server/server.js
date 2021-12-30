@@ -16,6 +16,7 @@ const {
   CLIENT_ID,
   CLIENT_SECRET,
   REDIRECT_URI,
+  AUTHENDPOINT,
   MONGODB_URI
 } = process.env
 
