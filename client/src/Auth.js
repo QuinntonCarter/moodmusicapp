@@ -18,9 +18,6 @@ export default function Auth(){
 
     const [ inputs, setInputs ] = useState(initInputs);
     const [ toggle, setToggle ] = useState(false);
-
-    
-    // ${REACT_APP_SPOTIFY_AUTH}&state=${state}&scope=${scopes}
     
     function authUser(){
         const scopes = [
