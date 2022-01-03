@@ -1,5 +1,6 @@
 import axios from 'axios';
 const spotifyUserAPI = axios.create();
+
 const { 
   REACT_APP_API_URL,
   REACT_APP_MOOD_SERVER_URL
