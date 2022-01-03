@@ -134,7 +134,6 @@ export default function UserProvider(props){
         )
         .catch(err => console.log(err))
     };
-    console.log(userState.friends)
 
 // GET mood from DB **
     const getStatus = async (type, searched) => {
