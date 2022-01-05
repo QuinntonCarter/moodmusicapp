@@ -134,6 +134,7 @@ export default function UserProvider(props){
                 friends: res.data.friends
             }))
         )
+        .then(res => localStorage.setItem('user', JSON.stringify(res.data)))
         .catch(err => console.log(err))
     };
 
