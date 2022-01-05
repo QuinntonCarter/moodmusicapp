@@ -19,7 +19,7 @@ export default function Lists(){
     } = useContext(UserContext);
     
     console.log(friendPosts)
-    const mappedFriendsMoods = friendPosts ? friendPosts.map(post => 
+    const mappedFriendsMoods = friendPosts[0] ? friendPosts.map(post => 
         <>
             <h3 className='text-sm text-indigo-500'> {post.userString}'s mood
                 {post.timeline === 'short_term' && ` these past 30 days`}
@@ -38,7 +38,7 @@ export default function Lists(){
             <span className='text-sm text-cerise-500'> nothing to display </span>
         </>
 
-    const mappedFriendLists = friendLists ? friendLists.map(list => 
+    const mappedFriendLists = friendLists[0] ? friendLists.map(list => 
         <PostedList
             list={list}
             key={list._id}
@@ -61,7 +61,7 @@ export default function Lists(){
             ...prevState,
             friendLists: res
         })))
-    }, [userState.friends]);
+    }, [userState]);
 
     return(
         <div className='container-main'>

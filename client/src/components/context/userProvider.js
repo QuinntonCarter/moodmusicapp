@@ -73,7 +73,9 @@ export default function UserProvider(props){
                 token
             }))
         })
-        .catch(err => handleAuthError(err.response.data.errMsg))
+        .catch(err => 
+            handleAuthError(err.response.data.errMsg)
+            )
     };
 
     function logout(){
