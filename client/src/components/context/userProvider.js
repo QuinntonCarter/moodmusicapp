@@ -132,8 +132,7 @@ export default function UserProvider(props){
                 ...prevState,
                 user: res.data,
                 friends: res.data.friends
-            }),
-            console.log('id should match 53 and 60', res.data.friends))
+            }))
         )
         .catch(err => console.log(err))
     };
