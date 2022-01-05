@@ -132,7 +132,8 @@ export default function UserProvider(props){
                 ...prevState,
                 user: res.data,
                 friends: res.data.friends
-            }))
+            }),
+            console.log(res.data.friends))
         )
         .catch(err => console.log(err))
     };
