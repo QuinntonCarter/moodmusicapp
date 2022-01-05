@@ -139,20 +139,21 @@ export default function UserProvider(props){
 
 // GET mood from DB **
     const getStatus = async (type, searched) => {
+        let resp
         if(type === 'user'){
-        const { data } = await userAxios.get(`/app/moods`, {
-            params: {
-                type: type
-            }
-        })
-        return data
+            const { data } = await userAxios.get(`/app/moods`, {
+                params: {
+                    type: type
+                }
+            })
+            return resp = data
         } else if(type === 'friends'){
-        const { data } = await userAxios.get(`/app/moods`, {
-            params: {
-                type: type
-            }
-        })
-        return data
+            const { data } = await userAxios.get(`/app/moods`, {
+                params: {
+                    type: type
+                }
+            })
+        return resp = data
         } else if(type === 'searched'){
             const { data } = await userAxios.get(`/app/moods`, {
                 params: {
@@ -160,8 +161,10 @@ export default function UserProvider(props){
                     searched: searched
                 }
             })
-            return data
-        }};
+            return resp = data
+        }
+    return resp
+    };
 
 // GET recent playlist
     const getPosts = async (type) => {
