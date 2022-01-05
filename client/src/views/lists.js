@@ -61,7 +61,7 @@ export default function Lists(){
             ...prevState,
             friendLists: res
         })))
-    }, [userState]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [userState.friends]); // eslint-disable-line react-hooks/exhaustive-deps
     console.log(userState.user.friends)
     console.log(userState.friends)
 
