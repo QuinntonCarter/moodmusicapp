@@ -18,7 +18,6 @@ export default function Lists(){
         userState
     } = useContext(UserContext);
     
-    console.log(friendPosts)
     const mappedFriendsMoods = friendPosts[0] ? friendPosts.map(post => 
         <>
             <h3 className='text-sm text-indigo-500'> {post.userString}'s mood
@@ -51,16 +50,18 @@ export default function Lists(){
 
     useEffect(() => {
         getStatus('friends')
-        .then(res => setUserState(prevState => ({
-                ...prevState,
-                friendPosts: res
-            }))
-        )
+        .then(res => console.log(res))
+        // .then(res => setUserState(prevState => ({
+        //         ...prevState,
+        //         friendPosts: res
+        //     }))
+        // )
         getPosts('friends')
-        .then(res => setUserState(prevState => ({
-            ...prevState,
-            friendLists: res
-        })))
+        .then(res => console.log(res))
+        // .then(res => setUserState(prevState => ({
+        //     ...prevState,
+        //     friendLists: res
+        // })))
     }, [userState.friends]); // eslint-disable-line react-hooks/exhaustive-deps
     console.log(userState.user.friends)
     console.log(userState.friends)
