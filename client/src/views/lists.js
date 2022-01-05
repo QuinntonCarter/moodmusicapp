@@ -18,7 +18,7 @@ export default function Lists(){
         userState
     } = useContext(UserContext);
     
-    const mappedFriendsMoods = friendPosts[0] ? friendPosts.map(post => 
+    const mappedFriendsMoods = friendPosts?.[0] ? friendPosts.map(post => 
         <>
             <h3 className='text-sm text-indigo-500'> {post.userString}'s mood
                 {post.timeline === 'short_term' && ` these past 30 days`}
@@ -37,7 +37,7 @@ export default function Lists(){
             <span className='text-sm text-cerise-500'> nothing to display </span>
         </>
 
-    const mappedFriendLists = friendLists[0] ? friendLists.map(list => 
+    const mappedFriendLists = friendLists?.[0]  ? friendLists.map(list => 
         <PostedList
             list={list}
             key={list._id}
