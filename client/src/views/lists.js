@@ -65,6 +65,7 @@ export default function Lists(){
         // })))
     }, [userState]); // eslint-disable-line react-hooks/exhaustive-deps
     console.log(userState.user.friends)
+    console.log(userState.friends)
 
     return(
         <div className='container-main'>
