@@ -54,7 +54,7 @@ export default function Profile(){
             ...prevState,
             lists: res
         })))
-    },[])
+    },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return(
         <div className='container-main'>
