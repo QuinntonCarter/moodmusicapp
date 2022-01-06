@@ -36,6 +36,7 @@ export default function UserProvider(props){
 
     const [ spotifyUserState, setSpotifyUserState ] = useState(initSpotifyState);
     const [ userState, setUserState ] = useState(initState);
+    const [ friends, setFriends ] = useState();
 
 // for auth
     function signup(credentials){
@@ -72,6 +73,7 @@ export default function UserProvider(props){
                 user,
                 token
             }))
+            setFriends([user.friends])
         })
         .catch(err => 
             handleAuthError(err.response.data.errMsg)
@@ -131,6 +133,7 @@ export default function UserProvider(props){
             ...prevState,
             user: data
         }))
+        setFriends(data.friends)
     };
 
 // GET mood from DB **
