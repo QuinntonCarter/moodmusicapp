@@ -155,6 +155,7 @@ export default function UserProvider(props){
                 ...prevState,
                 friendPosts: data
             }))
+            console.log(data)
         } else if(type === 'searched'){
             const { data } = await userAxios.get(`/app/moods`, {
                 params: {
@@ -186,6 +187,7 @@ export default function UserProvider(props){
             ...prevState,
             friendLists: data
         }))
+        console.log(data)
     }};
 
     // DELETE account and logout
