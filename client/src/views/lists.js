@@ -61,14 +61,14 @@ export default function Lists(){
         //     ...prevState,
         //     friendLists: res
         // })))
-    }, [friends]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [friends]) // eslint-disable-line react-hooks/exhaustive-deps
     console.log(friends)
     console.log(friendLists)
     console.log(friendPosts)
 
     return(
         <div className='container-main'>
-            <div>
+            {/* <div>
             <span className='text-sm text-indigo-300'> {userState.user.friends && userState.user.friends.length} friends and {friendPosts && friendPosts.length} posted moods </span>
                 <br/>
                 {mappedFriendsMoods}
@@ -77,7 +77,7 @@ export default function Lists(){
                 <span className='text-sm text text-submarine-300'> {userState.user.friends && userState.user.friends.length} friends and {friendLists && friendLists.length} posted lists </span>
                 <br/>
                 {mappedFriendLists}
-            </div>
+            </div> */}
         </div>
     )
 };
