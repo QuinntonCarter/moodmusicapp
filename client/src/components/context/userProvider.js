@@ -183,6 +183,7 @@ export default function UserProvider(props){
                 type: type
             }
         })
+        console.log('posts',data)
         setUserState(prevState => ({
             ...prevState,
             friendLists: data
@@ -199,7 +200,7 @@ export default function UserProvider(props){
     };
 
     useEffect(() => {
-        // friends are not 
+        // friendsLists and friendPosts are just not reflecting changes tested and shown to be occuring literally everywhere else in the app
         console.log('effect ran')
         getStatus('friends')
         getPosts('friends')
