@@ -42,8 +42,7 @@ export default function Lists(){
         <PostedList
             list={list}
             key={list._id}
-        />
-        )
+        />)
         :
         <>
             <span className='text-sm text-cerise-500'> nothing to display </span>
@@ -63,6 +62,9 @@ export default function Lists(){
         })))
     }, [friends]); // eslint-disable-line react-hooks/exhaustive-deps
     console.log(friends)
+    console.log(friendLists)
+    console.log(friendPosts)
+
     return(
         <div className='container-main'>
             <div>
