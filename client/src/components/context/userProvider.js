@@ -18,7 +18,7 @@ userAxios.interceptors.request.use(config => {
 export default function UserProvider(props){
     const initState = {
         // user: JSON.parse(localStorage.getItem('user')) || null,
-        user: '',
+        user: {},
         token: localStorage.getItem('token') || '',
         lists: [],
         recentMood: [],
@@ -104,7 +104,7 @@ export default function UserProvider(props){
     };
 
 // POST share posts depending on type
-    const shareItem = async (list, timeframe) => {
+    const shareItem = (list, timeframe) => {
         if(list.type === 'playlist'){
             userAxios.post(`/app/lists`, list, {
                 params: {
@@ -122,20 +122,16 @@ export default function UserProvider(props){
 
 // PUT follow and unfollow
     const updateFollowStatus = async (id, type) => {
-        const { data, err } = await userAxios.post(`/app/users/friends`, {
+        const { data } = await userAxios.post(`/app/users/friends`, {
             params: {
                 type: type,
                 id: id
             }
         })
-        if(data)
         setUserState(prevState => ({
             ...prevState,
-            user: data,
-            friends: data.friends
+            user: data
         }))
-        else if(err)
-        console.log(err)
     };
 
 // GET mood from DB **

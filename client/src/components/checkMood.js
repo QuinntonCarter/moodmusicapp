@@ -58,7 +58,7 @@ export const CheckMood = () => {
                 }
                 return selectionParsed
             })
-        // setFound to the items w only needed data for mongodb api
+        // setFound to the items w only needed data for mongo
             setFound(forDB)
         })
         .catch(err => console.log(err))
