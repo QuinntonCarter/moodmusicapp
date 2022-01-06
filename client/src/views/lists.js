@@ -9,13 +9,18 @@ export default function Lists(){
         getPosts,
         getStatus,
         setUserState,
+        userState,
         userState: {
             friendPosts
         },
         userState: {
             friendLists
         },
-        userState
+        userState: {
+            user: {
+                friends
+            }
+        }
     } = useContext(UserContext);
     
     const mappedFriendsMoods = friendPosts?.[0] ? friendPosts.map(post => 
@@ -60,8 +65,7 @@ export default function Lists(){
             ...prevState,
             friendLists: res
         })))
-    }, [userState.user]); // eslint-disable-line react-hooks/exhaustive-deps
-    console.log(userState.user)
+    }, [friends]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return(
         <div className='container-main'>
