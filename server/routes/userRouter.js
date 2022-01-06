@@ -15,8 +15,7 @@ userRouter.get('/', (req, res, next) => {
                     return next(err)
                 }
                 return res.status(200).send(users)
-    })}
-    if(req.query.type === 'results'){
+    })} if(req.query.type === 'results'){
         List.findOne({ _id: req.query.id }, 
             (err, results) => {
                 if(err){

@@ -17,7 +17,8 @@ userAxios.interceptors.request.use(config => {
 
 export default function UserProvider(props){
     const initState = {
-        user: JSON.parse(localStorage.getItem('user')) || null,
+        // user: JSON.parse(localStorage.getItem('user')) || null,
+        user: '',
         token: localStorage.getItem('token') || '',
         lists: [],
         recentMood: [],
@@ -66,7 +67,7 @@ export default function UserProvider(props){
         .then(res => {
             const { user, token } = res.data
             localStorage.setItem('token', token)
-            localStorage.setItem('user', JSON.stringify(user))
+            // localStorage.setItem('user', JSON.stringify(user))
             setUserState(prevUserState => ({
                 ...prevUserState,
                 user,

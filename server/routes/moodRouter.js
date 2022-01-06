@@ -12,8 +12,8 @@ moodRouter.get('/', (req, res, next) => {
                     return next(err)
                 }
                 return res.status(200).send(friendMood)
-    })
-} else if(req.query.type === 'user') {
+        })
+    } else if(req.query.type === 'user') {
         // query current user's recent posts
         MoodList.find({ cueUser: req.user._id },
             { isAdmin: 0, password: 0 },
