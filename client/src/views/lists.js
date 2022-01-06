@@ -49,17 +49,18 @@ export default function Lists(){
         </>
 
     useEffect(() => {
-        getStatus('friends')
-        .then(res => setUserState(prevState => ({
-                ...prevState,
-                friendPosts: res
-            }))
-        )
-        getPosts('friends')
-        .then(res => setUserState(prevState => ({
-            ...prevState,
-            friendLists: res
-        })))
+        console.log('effect ran')
+        // getStatus('friends')
+        // .then(res => setUserState(prevState => ({
+        //         ...prevState,
+        //         friendPosts: res
+        //     }))
+        // )
+        // getPosts('friends')
+        // .then(res => setUserState(prevState => ({
+        //     ...prevState,
+        //     friendLists: res
+        // })))
     }, [friends]); // eslint-disable-line react-hooks/exhaustive-deps
     console.log(friends)
     console.log(friendLists)
