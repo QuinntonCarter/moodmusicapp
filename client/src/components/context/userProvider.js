@@ -196,6 +196,7 @@ export default function UserProvider(props){
         value={{
             ...userState,
             setUserState,
+            friends,
             spotifyUserState,
             setSpotifyUserState,
             userState,

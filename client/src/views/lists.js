@@ -16,11 +16,7 @@ export default function Lists(){
         userState: {
             friendLists
         },
-        userState: {
-            user: {
-                friends
-            }
-        }
+        friends
     } = useContext(UserContext);
     
     const mappedFriendsMoods = friendPosts?.[0] ? friendPosts.map(post => 
