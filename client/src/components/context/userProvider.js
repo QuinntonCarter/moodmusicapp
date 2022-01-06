@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const {
@@ -197,6 +197,16 @@ export default function UserProvider(props){
         .catch(err => handleAuthError(err.response.data.errMsg))
         setTimeout(() => { logout() }, 1000)
     };
+
+    useEffect(() => {
+        // friends are not 
+        console.log('effect ran')
+        getStatus('friends')
+        getPosts('friends')
+    }, [friends]) // eslint-disable-line react-hooks/exhaustive-deps
+    console.log(friends)
+    console.log(userState.friendLists)
+    console.log(userState.friendPosts)
 
     return(
         <UserContext.Provider

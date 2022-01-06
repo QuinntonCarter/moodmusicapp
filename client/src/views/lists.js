@@ -48,15 +48,6 @@ export default function Lists(){
             <span className='text-sm text-cerise-500'> nothing to display </span>
         </>
 
-    useEffect(() => {
-        console.log('effect ran')
-        getStatus('friends')
-        getPosts('friends')
-    }, [friends]) // eslint-disable-line react-hooks/exhaustive-deps
-    console.log(friends)
-    console.log(friendLists)
-    console.log(friendPosts)
-
     return(
         <div className='container-main'>
             {/* <div>
