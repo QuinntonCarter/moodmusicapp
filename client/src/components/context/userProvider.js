@@ -128,12 +128,14 @@ export default function UserProvider(props){
                 id: id
             }
         })
-        if(data)setUserState(prevState => ({
+        if(data)
+        setUserState(prevState => ({
             ...prevState,
             user: data,
             friends: data.friends
         }))
-        if(err)console.log(err)
+        else if(err)
+        console.log(err)
     };
 
 // GET mood from DB **
