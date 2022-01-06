@@ -120,22 +120,20 @@ export default function UserProvider(props){
         }
     };
 
-    // PUT follow and unfollow
-    const updateFollowStatus = (id, type) => {
-        userAxios.post(`/app/users/friends`, {
+// PUT follow and unfollow
+    const updateFollowStatus = async (id, type) => {
+        const { data, err } = await userAxios.post(`/app/users/friends`, {
             params: {
                 type: type,
                 id: id
             }
         })
-        .then(res => 
-            setUserState(prevState => ({
-                ...prevState,
-                user: res.data,
-                friends: res.data.friends
-            }))
-        )
-        .catch(err => console.log(err))
+        if(data)setUserState(prevState => ({
+            ...prevState,
+            user: data,
+            friends: data.friends
+        }))
+        if(err)console.log(err)
     };
 
 // GET mood from DB **
