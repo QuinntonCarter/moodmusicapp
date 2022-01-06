@@ -22,7 +22,6 @@ export default function UserProvider(props){
         lists: [],
         recentMood: [],
         // use to fix friend list info display on follow/unfollow **
-        friends: [],
         friendLists: [],
         friendPosts: [],
         errMsg: ''

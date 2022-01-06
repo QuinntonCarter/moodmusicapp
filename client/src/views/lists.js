@@ -62,7 +62,7 @@ export default function Lists(){
             friendLists: res
         })))
     }, [friends]); // eslint-disable-line react-hooks/exhaustive-deps
-
+    console.log(friends)
     return(
         <div className='container-main'>
             <div>
