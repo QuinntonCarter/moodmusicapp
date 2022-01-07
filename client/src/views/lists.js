@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../components/context/userProvider.js';
 import { PostedMood } from '../components/postedMood.js';
 import { PostedList } from '../components/postedList.js';
@@ -6,17 +6,13 @@ import { PostedList } from '../components/postedList.js';
 // friends' posts
 export default function Lists(){
     const {
-        getPosts,
-        getStatus,
-        setUserState,
         userState,
         userState: {
             friendPosts
         },
         userState: {
             friendLists
-        },
-        friends
+        }
     } = useContext(UserContext);
     
     const mappedFriendsMoods = friendPosts?.[0] ? friendPosts.map(post => 
@@ -50,7 +46,7 @@ export default function Lists(){
 
     return(
         <div className='container-main'>
-            {/* <div>
+            <div>
             <span className='text-sm text-indigo-300'> {userState.user.friends && userState.user.friends.length} friends and {friendPosts && friendPosts.length} posted moods </span>
                 <br/>
                 {mappedFriendsMoods}
@@ -59,7 +55,7 @@ export default function Lists(){
                 <span className='text-sm text text-submarine-300'> {userState.user.friends && userState.user.friends.length} friends and {friendLists && friendLists.length} posted lists </span>
                 <br/>
                 {mappedFriendLists}
-            </div> */}
+            </div>
         </div>
     )
 };

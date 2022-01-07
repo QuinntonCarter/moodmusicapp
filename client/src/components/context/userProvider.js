@@ -188,7 +188,6 @@ export default function UserProvider(props){
             ...prevState,
             friendLists: data
         }))
-        console.log(data)
     }};
 
     // DELETE account and logout
