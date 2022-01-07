@@ -21,7 +21,6 @@ export default function UserProvider(props){
         token: localStorage.getItem('token') || '',
         lists: [],
         recentMood: [],
-        // use to fix friend list info display on follow/unfollow **
         friendLists: [],
         friendPosts: [],
         errMsg: ''

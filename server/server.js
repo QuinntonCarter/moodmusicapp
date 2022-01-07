@@ -105,7 +105,6 @@ app.get(`/callback`, (req, res, next) => {
         const { access_token, refresh_token, expires_in } = response.data;
         const getTokenURL = new URL(
             `${BASE_URL}?access_token=${access_token}&refresh_token=${refresh_token}&expires_in=${expires_in}`
-            // `http://localhost:3000/?access_token=${access_token}&refresh_token=${refresh_token}&expires_in=${expires_in}`
         );
         res.redirect(`${getTokenURL}`)
         } else {

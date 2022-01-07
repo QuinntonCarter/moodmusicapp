@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import AuthForm from './components/forms/authForm.js';
 import { UserContext } from './components/context/userProvider.js';
 import { accessToken, getCurrentUserProfile } from './components/spotify.js';
-import axios from 'axios';
 
 const {
     REACT_APP_SPOTIFY_AUTH
@@ -109,7 +108,5 @@ export default function Auth(){
                 If you choose to post, you are agreeing to store the associated <span style={{color: '#1DB954'}}> Spotify </span> listening metadata for viewing by 
                 yourself and friends but no sensitive account information is used in the process. <br/> <span className='text-cerise-600'> This app will never access or store sensitive account information. </span> <br/> You may delete your account at any time.</p>
             <a type='button' className='btnbold-small bg-indigo-600' href={REACT_APP_SPOTIFY_AUTH}> Login with Spotify </a>
-            {/* for testing */}
-            {/* <a type='button' className='btnbold-small bg-indigo-600' href={`http://localhost:8888/login`}> Login with Spotify </a> */}
         </div>
 };
