@@ -5,7 +5,7 @@ const List = require('../models/list.js');
 // GET users' recent or all user's friends' lists
 listsRouter.get('/', (req, res, next) => {
     if(req.query.type === 'friends'){
-        List.find({ cueUser: { $in: req.user.friends }},
+        List.find({ cueUser: { $in: req.query.friends }},
             (err, friendMood) => {
                 if(err){
                     res.status(500)

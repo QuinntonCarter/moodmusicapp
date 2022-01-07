@@ -150,14 +150,15 @@ export default function UserProvider(props){
         } else if(type === 'friends'){
             const { data } = await userAxios.get(`/app/moods`, {
                 params: {
-                    type: type
+                    type: type,
+                    // send friends through to prevent async issue
+                    friends: friends
                 }
             })
             setUserState(prevState => ({
                 ...prevState,
                 friendPosts: data
             }))
-            console.log(data)
         } else if(type === 'searched'){
             const { data } = await userAxios.get(`/app/moods`, {
                 params: {
@@ -182,10 +183,10 @@ export default function UserProvider(props){
     } else if(type === 'friends'){
         const { data } = await userAxios.get(`/app/lists`, {
             params: {
-                type: type
+                type: type,
+                friends: friends
             }
         })
-        console.log('posts',data)
         setUserState(prevState => ({
             ...prevState,
             friendLists: data
@@ -200,13 +201,10 @@ export default function UserProvider(props){
         setTimeout(() => { logout() }, 1000)
     };
 
-    // useEffect(() => {
-    //     // friendsLists and friendPosts are just not reflecting changes tested and shown to be occuring literally everywhere else in the app
-    //     console.log('effect ran')
-    //     getStatus('friends')
-    //     getPosts('friends')
-    // }, [friends]) // eslint-disable-line react-hooks/exhaustive-deps
-
+    useEffect(() => {
+        getStatus('friends')
+        getPosts('friends')
+    }, [friends]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return(
         <UserContext.Provider

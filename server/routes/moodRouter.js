@@ -5,7 +5,7 @@ const MoodList = require('../models/moodList.js');
 // GET users' recent and all user's friends' recent moods
 moodRouter.get('/', (req, res, next) => {
     if(req.query.type === 'friends'){
-        MoodList.find({ cueUser: { $in: req.user.friends }},
+        MoodList.find({ cueUser: { $in: req.query.friends }},
             (err, friendMood) => {
                 if(err){
                     res.status(500)
