@@ -152,7 +152,7 @@ export default function UserProvider(props){
                 params: {
                     type: type,
                     // send friends through to prevent async issue
-                    friends: friends
+                    friends: userState.user.friends
                 }
             })
             setUserState(prevState => ({
@@ -184,7 +184,7 @@ export default function UserProvider(props){
         const { data } = await userAxios.get(`/app/lists`, {
             params: {
                 type: type,
-                friends: friends
+                friends: userState.user.friends
             }
         })
         setUserState(prevState => ({
