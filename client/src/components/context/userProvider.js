@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const {
@@ -66,7 +66,6 @@ export default function UserProvider(props){
         .then(res => {
             const { user, token } = res.data
             localStorage.setItem('token', token)
-            // localStorage.setItem('user', JSON.stringify(user))
             setUserState(prevUserState => ({
                 ...prevUserState,
                 user,
@@ -200,11 +199,6 @@ export default function UserProvider(props){
         .catch(err => handleAuthError(err.response.data.errMsg))
         setTimeout(() => { logout() }, 1000)
     };
-
-    useEffect(() => {
-        getStatus('friends')
-        getPosts('friends')
-    }, [friends]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return(
         <UserContext.Provider

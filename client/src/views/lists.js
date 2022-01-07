@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../components/context/userProvider.js';
 import { PostedMood } from '../components/postedMood.js';
 import { PostedList } from '../components/postedList.js';
@@ -6,12 +6,19 @@ import { PostedList } from '../components/postedList.js';
 // friends' posts
 export default function Lists(){
     const {
+        getPosts,
+        getStatus,
         userState,
         userState: {
             friendPosts
         },
         userState: {
             friendLists
+        },
+        userState: {
+            user: {
+                friends
+            }
         }
     } = useContext(UserContext);
     
@@ -43,6 +50,11 @@ export default function Lists(){
         <>
             <span className='text-sm text-cerise-500'> nothing to display </span>
         </>
+
+        useEffect(() => {
+            getStatus('friends')
+            getPosts('friends')
+        }, [friends]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return(
         <div className='container-main'>
