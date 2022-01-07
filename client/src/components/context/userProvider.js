@@ -133,6 +133,8 @@ export default function UserProvider(props){
             user: data
         }))
         setFriends(data.friends)
+        getStatus('friends')
+        getPosts('friends')
     };
 
 // GET mood from DB **
@@ -198,12 +200,12 @@ export default function UserProvider(props){
         setTimeout(() => { logout() }, 1000)
     };
 
-    useEffect(() => {
-        // friendsLists and friendPosts are just not reflecting changes tested and shown to be occuring literally everywhere else in the app
-        console.log('effect ran')
-        getStatus('friends')
-        getPosts('friends')
-    }, [friends]) // eslint-disable-line react-hooks/exhaustive-deps
+    // useEffect(() => {
+    //     // friendsLists and friendPosts are just not reflecting changes tested and shown to be occuring literally everywhere else in the app
+    //     console.log('effect ran')
+    //     getStatus('friends')
+    //     getPosts('friends')
+    // }, [friends]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
     return(
