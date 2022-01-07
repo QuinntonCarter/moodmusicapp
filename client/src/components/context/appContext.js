@@ -13,8 +13,7 @@ export default function AppContextProvider(props){
     const spotifyUserAPI = axios.create();
     spotifyUserAPI.interceptors.request.use(config => {
         config.headers.Authorization = `Bearer ${accessToken}`
-        // for testing **
-        // config.baseURL = REACT_APP_API_URL
+        config.baseURL = REACT_APP_API_URL
         return config
     });
 

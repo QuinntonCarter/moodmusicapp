@@ -82,52 +82,52 @@ export const CheckMood = () => {
 
     return(
         <div className='grid container-main'>
-        <div className='p-3 pt-4 bg-indigo-800 text-cyan-800 rounded'>
-            <input onClick={() => history.goBack()} className='bg-cerise-700 text-xs text-cyan-50 font-bold btnbold-small' type='button' value='to profile'/>
-            <input onClick={() => setView(prevState => !prevState)} value={`view ${view ? `recent` : `playlists`}`} title='click to check moods of spotify playlists' className='btn text-sm' type='button'/>
-            { !view ?
-            <>
-                <form className='p-3 text-md text-cocoa-900 grid grid-cols-1 gap-3 pr-6 pl-6'>
-                    <select className='bg-indigo-200 text-center text-indigo-800 text-sm rounded-full' onChange={e => setAmount(e.target.value)}>
-                        <option value='3' > top 3 </option>
-                        <option value='5'> top 5 </option>
-                        <option value='8'> top 8 </option>
-                        <option value='10'> top 10 </option>
-                        <option value='15'> top 15 </option>
-                        <option value='20'> top 20 </option>
-                        <option value='25'> top 25 </option>
-                        <option value='30'> top 30 </option>
-                        <option value='40'> top 40 </option>
-                        <option value='50'> top 50 </option>
-                    </select>
-                    <select className='bg-indigo-200 text-center text-sm text-indigo-800 rounded-full' onChange={e => setTimeframe(e.target.value)}>
-                        <option value='short_term' > monthly </option>
-                        <option value='medium_term' > biannual </option>
-                        <option value='long_term'> annual </option>
-                    </select>
-                    <select className='bg-indigo-200 text-center text-indigo-800 text-sm rounded-full' onChange={e => setType(e.target.value)}>
-                        <option value='artists' > artists </option>
-                        <option value='tracks'> tracks </option>
-                    </select>
-                    <input onClick={() => shareItem(found, timeframe)} className='bg-indigo-600 text-indigo-50 font-medium text-md btn' type='button' title='post as your mood' value='post mood.'/>
-                </form>
-                <p className='text-sm text-cerise-50'> top <span className='text-xl'>{amount}</span> <span className='text-xl'> {type} </span> 
-                    {timeframe === 'short_term' && ` these past 30 days`} 
-                    {timeframe === 'medium_term' && ' these past 6 months'}
-                    {timeframe === 'long_term' && ' the past year'} 
-                </p>
-                <div className=' p-3 rounded'>
-                    {mappedMood || 'the vibe is off. refresh the page.'}
+            <div className='p-3 pt-4 bg-indigo-800 text-cyan-800 rounded'>
+                <input onClick={() => history.goBack()} className='bg-cerise-700 text-xs text-cyan-50 font-bold btnbold-small' type='button' value='to profile'/>
+                <input onClick={() => setView(prevState => !prevState)} value={`view ${view ? `recent` : `playlists`}`} title='click to check moods of spotify playlists' className='btn text-sm' type='button'/>
+                { !view ?
+                <>
+                    <form className='p-3 text-md text-cocoa-900 grid grid-cols-1 gap-3 pr-6 pl-6'>
+                        <select className='bg-indigo-200 text-center text-indigo-800 text-sm rounded-full' onChange={e => setAmount(e.target.value)}>
+                            <option value='3' > top 3 </option>
+                            <option value='5'> top 5 </option>
+                            <option value='8'> top 8 </option>
+                            <option value='10'> top 10 </option>
+                            <option value='15'> top 15 </option>
+                            <option value='20'> top 20 </option>
+                            <option value='25'> top 25 </option>
+                            <option value='30'> top 30 </option>
+                            <option value='40'> top 40 </option>
+                            <option value='50'> top 50 </option>
+                        </select>
+                        <select className='bg-indigo-200 text-center text-sm text-indigo-800 rounded-full' onChange={e => setTimeframe(e.target.value)}>
+                            <option value='short_term' > monthly </option>
+                            <option value='medium_term' > biannual </option>
+                            <option value='long_term'> annual </option>
+                        </select>
+                        <select className='bg-indigo-200 text-center text-indigo-800 text-sm rounded-full' onChange={e => setType(e.target.value)}>
+                            <option value='artists' > artists </option>
+                            <option value='tracks'> tracks </option>
+                        </select>
+                        <input onClick={() => shareItem(found, timeframe)} className='bg-indigo-600 text-indigo-50 font-medium text-md btn' type='button' title='post as your mood' value='post mood.'/>
+                    </form>
+                    <p className='text-sm text-cerise-50'> top <span className='text-xl'>{amount}</span> <span className='text-xl'> {type} </span> 
+                        {timeframe === 'short_term' && ` these past 30 days`} 
+                        {timeframe === 'medium_term' && ' these past 6 months'}
+                        {timeframe === 'long_term' && ' the past year'} 
+                    </p>
+                    <div className=' p-3 rounded'>
+                        {mappedMood || 'the vibe is off. refresh the page.'}
+                    </div>
+                </>
+                :
+                // playlist view
+                <div className='p-3 text-md text-cocoa-50 grid grid-cols-1 gap-3 pr-6 pl-6'>
+                    <p className='text-sm'> viewing <span className='text-xl'> {playlists.total} </span> playlists </p>
+                    {mappedPlaylists}
                 </div>
-            </>
-            :
-            // playlist view
-            <div className='p-3 text-md text-cocoa-50 grid grid-cols-1 gap-3 pr-6 pl-6'>
-                <p className='text-sm'> viewing <span className='text-xl'> {playlists.total} </span> playlists </p>
-                {mappedPlaylists}
+                }
             </div>
-            }
-        </div>
         </div>
     )
 };
