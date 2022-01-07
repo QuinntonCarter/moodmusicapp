@@ -204,9 +204,7 @@ export default function UserProvider(props){
         getStatus('friends')
         getPosts('friends')
     }, [friends]) // eslint-disable-line react-hooks/exhaustive-deps
-    console.log(friends)
-    console.log(userState.friendLists)
-    console.log(userState.friendPosts)
+
 
     return(
         <UserContext.Provider

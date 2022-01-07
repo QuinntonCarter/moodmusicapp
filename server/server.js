@@ -147,6 +147,6 @@ app.use((err, req, res, next) => {
   return res.send({ errMsg: err.message })
 });
 
-app.listen(PORT, 8888, () => {
+app.listen(PORT, () => {
   console.log(`Music app listening at ${PORT}`);
 });
