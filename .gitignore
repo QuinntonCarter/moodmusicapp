@@ -13,7 +13,6 @@
 
 # misc
 tailwind.config.js
-readme.md
 craco.config.js
 notes.md
 .DS_Store
