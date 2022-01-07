@@ -11,8 +11,7 @@ moodRouter.get('/', (req, res, next) => {
                     res.status(500)
                     return next(err)
                 }
-                return console.log(friendMood)
-                // return res.status(200).send(friendMood)
+                return res.status(200).send(friendMood)
         })
     } else if(req.query.type === 'user') {
         // query current user's recent posts
